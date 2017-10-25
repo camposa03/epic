@@ -1,5 +1,12 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
+import Event from './Event';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,22 +24,28 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Router>
+       <div>
         <Navbar color="dark" light expand="md" className="navbar-dark">
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Events</NavLink>
+              <NavLink tag={Link} to="/about">About</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                <NavLink tag={Link} to="/events">Events</NavLink>
               </NavItem>
             </Nav>
+
+            
           </Collapse>
         </Navbar>
-      </div>
+
+        <Route path="/events" component={Event}/>
+        </div>
+      </Router>
     );
   }
 }
